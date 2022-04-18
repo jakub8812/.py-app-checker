@@ -1,3 +1,0 @@
-import os
-shutdown
-os.system(' shutdown ')
