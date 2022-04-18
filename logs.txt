@@ -1,0 +1,4 @@
+2022-04-18 17:44:02.542856 dangerous_words.txt
+2022-04-18 17:45:21.846123 dangerous_words.txt None
+2022-04-18 17:46:27.407156 Wyswietlono liste slow zakazanych z pliku:  dangerous_words.txt
+2022-04-18 17:50:47.703923 Dodano nowe slowo zakazane do slownika: dangerous_words.txt pod kluczem: testujemy None
