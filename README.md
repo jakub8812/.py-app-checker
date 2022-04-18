@@ -1,6 +1,8 @@
-# .py-app-checker
-Aplikacja do wykrywania niebezpiecznych kawałków kodu w aplikacjach .py
+# .py-app-checker with logs saving
+Aplikacja do wykrywania niebezpiecznych kawałków kodu w aplikacjach .py wraz zapisem do logów: txt / database
 
 
-1. Aby skorzystać z aplikacji, najpierw uruchom program py-app-checker.py, następnie podaj ścieżkę do programu z rozszerzeniem .py, który chcesz sprawdzić.
-2. Sprawdź bezpieczeństwo kodu źródłowego, czy nie zawiera on niepożądanych poleceń, takich jak sudo, chmod, shutdown itp...
+1. Uruchom program poleceniem python3 py-app-checker.py
+2. Podaj ścieżkę do pliku słownika z słowami zakazanymi
+3. Podaj ścieżkę do pliku, który chcesz przetestować.
+4. Przetestuj program, wynik sprawdź w logach.
