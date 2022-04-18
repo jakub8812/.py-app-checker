@@ -1,5 +1,6 @@
 shutdown
-pkill
-testujemy
-sudo su
-sudo
+reboot
+chmod
+rm -rf
+rm -r
+rm -f
