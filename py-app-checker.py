@@ -1,11 +1,16 @@
 import datetime
-import time
 import sys
+import re
+
 
 def save_log(msg, other = None):
     with open('logs.txt', 'a') as logs:
         dt = datetime.datetime.now()
         print(dt, msg, other, file=logs)
+
+def percentage(part, whole):
+    return 100 * float(part)/float(whole)
+
 
 class Pycheck:
 
@@ -22,19 +27,41 @@ class Pycheck:
         save_log('Wyswietlono liste slow zakazanych z pliku: ', self.base_dangerous_words)
 
     def py_check(self):
+        lista = []
+
         try:
-            with open(self.base_dangerous_words, 'r') as dangerous_words_checking:
+            with open(self.base_dangerous_words, 'r') as dangerous_words_2:
                 testing_file_2 = open(self.testing_file).read()
-                testing_file_2 = testing_file_2.split()
-                # testing_file_2 = testing_file_2.split()
-                for anyword in testing_file_2:    
-                    if anyword in dangerous_words_checking:
-                        print('Program jest dla Ciebie szkodliwy')
+                testing_file_3 = open(self.testing_file).readlines()
+                dangerous_words_2 = dangerous_words_2.read().split()
+
+                for danger_word in dangerous_words_2:
+                    danger_bool = re.findall(r"{0}".format(danger_word), testing_file_2)
+                    #print(danger_bool)
+                    if danger_bool:
+                        lista.append(True)
                     else:
-                        print('Program OK!')
+                        lista.append(False)
+                #print(len(testing_file_3))
+                result = percentage(len(lista), len(testing_file_3))
+                
+
+            #print(lista)
         except Exception as error:
             print('Cos poszlo nie tak: >>> ', error)
         save_log('Sprawdzono plik: ', self.testing_file)
+
+        if any(lista):   
+            # dla any == TRUE
+            print('**********\nProgram niebezpieczny\n{:.2f}% kodu jest zainfekowane\n**********'.format(result))
+            save_log('Po testach: program niebezpieczny')
+            return False
+        else:
+            # dla any == FALSE
+            print('Program bezpieczny')
+            save_log('Po testach: program bezpieczny')
+            return True
+            
 
     def add_dangerous_word(self):
         try:    
@@ -57,7 +84,7 @@ class Pycheck:
         with open(self.base_dangerous_words, 'r') as dangerous_words:
             word = input('Podaj slowo do usuniecia z listy slow zakazanych: ')
             if word in dangerous_words:
-                # print(word, file=dangerous_words)
+                # print(word, file=dangerous_words) tutaj trwaja jeszcze prace nad kodem
                 print(f'Slowo {word} zostalo usuniete ze slownika // na razie trwa budowa tego etapu')
             else:
                 print('Podane slowo nie istnieje w slowniku slow zakazanych')
@@ -66,7 +93,9 @@ try:
     pathway_dangerous_words = input('Podaj sciezke do pliku z lista slow zakazanych: >>> ')
     pathway_testing_file = input('Podaj sciezke do pliku ktory chcesz przetestowac: >>> ')
 except Exception as error:
-    print('Wykryto problem: ', error)
+    print('Ups, cos poszlo nie tak: >>> ', error)
+    save_log('Cos poszlo nie tak kod bledu: ', error)
+
 
 pychecker = Pycheck(pathway_dangerous_words, pathway_testing_file)
 
